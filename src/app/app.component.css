@@ -1,0 +1,7 @@
+/* .taskTitle {
+    overflow-wrap: break-word;
+} */
+.taskTitle {
+    /* overflow-wrap: break-word; */
+    word-break: break-all;
+}
