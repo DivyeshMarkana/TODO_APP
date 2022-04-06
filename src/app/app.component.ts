@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataService } from './local-data.service';
 
 interface Task {
@@ -14,7 +14,6 @@ interface Task {
 })
 export class AppComponent implements OnInit {
   title = 'TODO_APP';
-
   parsedJson: any;
 
   constructor(private localData: LocalDataService) { }
@@ -55,8 +54,12 @@ export class AppComponent implements OnInit {
   }
 
   clearToDo() {
-    this.tasks.splice(0);
+    const do_delete = confirm('Are you sure to delete all the task')
+
+    if (do_delete) {
+      this.tasks.splice(0);
     this.localData.clearData()
+    }
   }
 
   addTask(input) {
@@ -70,6 +73,7 @@ export class AppComponent implements OnInit {
           isCanceled: false,
           isDeleted: false
         });
+        
     }
 
     this.localData.setData("token", this.tasks)

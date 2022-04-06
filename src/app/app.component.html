@@ -9,11 +9,12 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <input type="text" class="form-control" name="task" placeholder="Task" #taskInput (keyup.enter)="addTask(taskInput)" >
+      <input type="text" class="form-control" name="task" placeholder="Task" #taskInput
+        (keyup.enter)="addTask(taskInput)">
     </div>
 
     <div class="col-2">
-      <button class="btn btn-info" type="submit" (click)="addTask(taskInput) " >Add</button>
+      <button class="btn btn-info form-control" type="submit" (click)="addTask(taskInput) ">Add</button>
     </div>
   </div>
 
@@ -26,33 +27,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let task of tasks; let idx = index ">
+          <ng-container *ngIf="tasks.length !== 0; else showPreview">
+            <tr *ngFor="let task of tasks; let idx = index ">
 
-            <td class="col-md-9 " *ngIf="task.isCanceled;else elseTd ">
-              <s class="taskTitle">{{idx + 1}}. {{task.title}}</s>
-            </td>
+              <td class="col-md-9 " *ngIf="task.isCanceled;else elseTd ">
+                <s class="taskTitle">{{idx + 1}}. {{task.title}}</s>
+              </td>
 
-            <ng-template #elseTd>
-              <td class="taskTitle">{{idx + 1}}. {{task.title}}</td>
-            </ng-template>
+              <ng-template #elseTd>
+                <td class="taskTitle">{{idx + 1}}. {{task.title}}</td>
+              </ng-template>
 
-            <td class="col-md-1"> 
-              <button class="btn btn-primary btn-sm" (click)="editTask(idx)"> Edit </button>
-           </td>
+              <td class="col-md-1">
+                <button class="btn btn-primary btn-sm form-control" (click)="editTask(idx)"> Edit </button>
+              </td>
 
-            <td class="col-md-1">
-              <button class="btn  btn-warning btn-sm" type="button" (click)="cancleTask(idx)"> Cancel </button>
-            </td>
+              <td class="col-md-1">
+                <button class="btn  btn-warning btn-sm form-control" type="button" (click)="cancleTask(idx)"> Cancel </button>
+              </td>
 
-            <td class="col-md-1">
-              <button class="btn btn-danger btn-sm" type="button" (click)="deleteTask(idx)"> Delete </button>
-            </td>
+              <td class="col-md-1">
+                <button class="btn btn-danger btn-sm form-control" type="button" (click)="deleteTask(idx)"> Delete </button>
+              </td>
 
-          </tr>
+            </tr>
+          </ng-container>
+          <ng-template #showPreview>
+            <h5 class="text-center">Add new task</h5>
+          </ng-template>
         </tbody>
         <tfoot>
           <tr>
-            <button class="btn btn-outline-danger mt-2" type="button" (click)="clearToDo()">Clear All</button>
+            <button class="btn btn-outline-danger mt-2 form-control" type="button" (click)="clearToDo()">Clear All</button>
             <!-- <button class="btn btn-outline-success mt-2" type="button" >Undo Task</button> -->
           </tr>
         </tfoot>
