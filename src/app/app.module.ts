@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { LocalDataService } from './local-data.service';
+
+LocalDataService
 
 
 @NgModule({
@@ -12,7 +15,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [  LocalDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
