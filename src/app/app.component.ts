@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   deletedTaskList: Array<Task> = [];
 
   loadData() {
-    const parsedData: string = this.localData.getData('token')
+    const parsedData: string = this.localData.getData('myData')
 
     this.parsedJson = JSON.parse(parsedData)
 
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 
     if (do_delete) {
       this.tasks.splice(0);
-    this.localData.clearData()
+      this.localData.clearData()
     }
   }
 
@@ -73,10 +73,8 @@ export class AppComponent implements OnInit {
           isCanceled: false,
           isDeleted: false
         });
-        
     }
-
-    this.localData.setData("token", this.tasks)
+    this.localData.setData("myData", this.tasks)
   }
 
   editTask(idx: number) {
