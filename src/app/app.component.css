@@ -5,3 +5,7 @@
     /* overflow-wrap: break-word; */
     word-break: break-all;
 }
+
+.task_btn {
+    max-width: 30px;
+}

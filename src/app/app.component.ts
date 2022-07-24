@@ -15,11 +15,13 @@ interface Task {
 export class AppComponent implements OnInit {
   title = 'TODO_APP';
   parsedJson: any;
+  API_KEY: string
 
   constructor(private localData: LocalDataService) { }
 
   ngOnInit(): void {
     this.loadData()
+    this.API_KEY = this.localData.API_KEY
   }
 
   tasks: Array<Task> = [
